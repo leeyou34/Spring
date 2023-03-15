@@ -16,4 +16,7 @@
 
 	<!-- (4) scope 속성 -->
 	<bean id="tv" class="polymorphism.SamsungTV" scope="singleton"/>
+	
+	<!-- (4-2) scope 속성 with prototype-->
+<!-- 	<bean id="tv" class="polymorphism.SamsungTV" scope="prototype"/> -->
 </beans>
