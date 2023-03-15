@@ -4,5 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- <bean id="tv" class="polymorphism.SamsungTV"/>  -->
-	<bean id="tv" class="polymorphism.SamsungTV" init-method="initMethod"/> <!-- bean 엘리먼트에에 init-method 속성을 지원한다. -->
+	
+	<!-- (1) init-method 속성 page 59 -->
+	<!-- <bean id="tv" class="polymorphism.SamsungTV" init-method="initMethod"/> --> <!-- bean 엘리먼트에에 init-method 속성을 지원한다. -->
+
+	<!-- (2) destory-method 속성 page 60-->
+	<!-- <bean id="tv" class="polymorphism.SamsungTV" destroy-method="destoryMethod"/> --> <!-- bean 엘리먼트에 destory-method 속성을 지원한다. -->
+
+	<!-- (3) lazy-init page 61 -->
+	<!-- <bean id="tv" class="polymorphism.SamsungTV" lazy-init="true"/> -->	
+
+	<!-- (4) scope 속성 -->
+	<bean id="tv" class="polymorphism.SamsungTV" scope="singleton"/>
 </beans>
