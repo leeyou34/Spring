@@ -29,6 +29,7 @@
 	<bean id="sony" class="polymorphism2.SonySpeaker"></bean>
 	
 	
+	
 	<!-- 다중 변수 매핑 page 72-->
 	<bean id="tv2" class="polymorphism3.SamsungTV">
 	    <constructor-arg index="0" ref="sony2"></constructor-arg>
@@ -36,12 +37,26 @@
 	</bean>
 	<bean id="sony2" class="polymorphism3.SonySpeaker"></bean>
 
-	<!-- 4.2.2 의존관계 변경 -->
+	
+	
+	<!-- 4.2.2. 의존관계 변경 -->
 	<bean id="tv3" class="polymorphism4.SamsungTV">
 	    <constructor-arg ref="apple"></constructor-arg>
 	    <constructor-arg value="280000"></constructor-arg>
 	</bean>
 	<bean id="apple" class="polymorphism4.AppleSpeaker"></bean>
+
+	
+	
+	<!-- 4.3.1 Setter Injection 기본 -->
+	<bean id="tv4" class="polymorphism5.SamsungTV">
+	    <property name="speaker" ref="apple1"></property>
+	    <property name="price" value="290000"></property>
+	</bean>
+	<bean id="sony3" class="polymorphism5.SonySpeaker"></bean>
+	<bean id="apple1" class="polymorphism5.AppleSpeaker"></bean>
+	
+	
+	
 </beans>
-
-
+	
