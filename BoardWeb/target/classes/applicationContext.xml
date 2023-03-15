@@ -35,4 +35,13 @@
 	    <constructor-arg index="1" value="270000"></constructor-arg>
 	</bean>
 	<bean id="sony2" class="polymorphism3.SonySpeaker"></bean>
+
+	<!-- 4.2.2 의존관계 변경 -->
+	<bean id="tv3" class="polymorphism4.SamsungTV">
+	    <constructor-arg ref="apple"></constructor-arg>
+	    <constructor-arg value="280000"></constructor-arg>
+	</bean>
+	<bean id="apple" class="polymorphism4.AppleSpeaker"></bean>
 </beans>
+
+
