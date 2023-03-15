@@ -20,10 +20,19 @@
 	<!-- (4-2) scope 속성 with prototype-->
 	<!-- <bean id="tv" class="polymorphism.SamsungTV" scope="prototype"/> -->
 
+
+
 	<!--  의존성 관계 시작 page 66-->
 	<bean id="tv1" class="polymorphism2.SamsungTV">
 	    <constructor-arg ref="sony"></constructor-arg>
 	</bean>    
 	<bean id="sony" class="polymorphism2.SonySpeaker"></bean>
 	
+	
+	<!-- 다중 변수 매핑 page 72-->
+	<bean id="tv2" class="polymorphism3.SamsungTV">
+	    <constructor-arg index="0" ref="sony2"></constructor-arg>
+	    <constructor-arg index="1" value="270000"></constructor-arg>
+	</bean>
+	<bean id="sony2" class="polymorphism3.SonySpeaker"></bean>
 </beans>
