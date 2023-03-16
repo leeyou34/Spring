@@ -117,5 +117,21 @@
 		</property>
 	</bean>
 	
+	
+	
+	
+	
+	<!-- 4.4.4 Properties 타입 매핑-->
+	<bean id="collectionBean3"
+	      class="com.springbook.ioc.injection3.CollectionBean">
+		<property name="addressList">
+		    <props>
+		        <prop key="고길동">서울시 강남구 역삼동</prop>
+		        <prop key="마이콜">서울시 강서구 화곡동</prop>
+		        <prop key="이영호">서울시 성동구 성수동</prop>
+		    </props>    
+		</property>
+	</bean>
+	
 </beans>
 	
