@@ -24,5 +24,9 @@
 
 	<!--  의존성 주입: @Qualifier -->
 	<bean id="tvQalifier" class="polymorphism.qualifier.LgTV"></bean>
+
+	<!-- 의존성 주입: @Resource -->
+	<bean id="tvResource" class="polymorphism.resource.LgTV"></bean>
+	
 </beans>
 	
