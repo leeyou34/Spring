@@ -68,5 +68,18 @@
 	<bean id="apple2" class="polymorphism6.AppleSpeaker"></bean>
 		
 	
+	
+	
+	<!-- 4.4.1 List 타입 매핑-->
+	<bean id="collectionBean"
+	      class="com.springbook.ioc.injection.CollectionBean">
+		<property name="addressList">
+		    <list>
+		        <value>서울시 강남구 역삼동</value>
+		        <value>서울시 성동구 행당동</value>
+		    </list>
+		</property>
+	</bean>
+	
 </beans>
 	
