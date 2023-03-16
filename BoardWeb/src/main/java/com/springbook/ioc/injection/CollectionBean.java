@@ -1,6 +1,7 @@
 package com.springbook.ioc.injection;
 
 import java.util.List;
+import java.util.Set;
 
 public class CollectionBean {
 	private List<String> addressList;
