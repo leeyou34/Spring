@@ -21,5 +21,8 @@
 	<!-- 의존성 주입: @Autowired -->
 	<bean id="tvAutowired" class="polymorphism.autowired.LgTV"></bean>
 	<bean id="sonyAutowired" class="polymorphism.autowired.SonySpeaker"></bean>
+
+	<!--  의존성 주입: @Qualifier -->
+	<bean id="tvQalifier" class="polymorphism.qualifier.LgTV"></bean>
 </beans>
 	
