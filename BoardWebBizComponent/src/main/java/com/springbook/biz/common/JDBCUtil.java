@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 public class JDBCUtil {
 	public static Connection getConnection() {
 		try {
-			Class.forName("org.postgresql.Driver");
+			Class.forName("org.postgresql.Driver"); // the following site was the reference. https://www.javatips.net/api/java.sql.drivermanager //
 			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/slipp_dev?useUnicode=true&characterEncoding=utf8", "sa", "");
 		} catch (Exception e) {
 			e.printStackTrace();
