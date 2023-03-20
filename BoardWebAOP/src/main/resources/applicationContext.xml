@@ -85,4 +85,15 @@
 	        <aop:after pointcut-ref="allPointcut" method="finallyLog"/>
 	    </aop:aspect>
 	</aop:config>
+	<!-- After 어드바이스 끝 -->
+	<!-- Around 어드바이스 시작-->
+	<bean id="around" class="com.springbook.biz.common.AroundAdvice"/>
+	<aop:config>
+	    <aop:pointcut id="allPointcut" expression="execution(* com.spring.biz..*Impl.*(..))"/>
+	    <aop:aspect ref="around">
+	        <aop:around pointcut-ref="allPointcut" method="aroundLog"/>
+	    </aop:aspect>
+	</aop:config>
+	
+	
 </beans>
