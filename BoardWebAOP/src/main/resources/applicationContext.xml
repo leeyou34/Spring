@@ -48,6 +48,7 @@
  	    <aop:advisor pointcut-ref="allPointcut" advice-ref="txAdvice"/>
  	</aop:config>
  -->
+ 	<!-- Before 어드바이스 시작 -->
  	<bean id="before" class="com.springbook.biz.common.BeforeAdvice"/>
  	
  	<aop:config>
@@ -57,9 +58,8 @@
  	        <aop:before pointcut-ref="allPointcut" method="beforeLog"/>
  	    </aop:aspect>
  	</aop:config>
- 
- 	
- 	
+ 	<!-- Before 어드바이스 끝 -->
+ 	<!-- After Returning 어드바이스 시작 -->
 	<bean id="afterReturning" class="com.springbook.biz.common.AfterReturningAdvice"/>
  	
  	<aop:config>
@@ -69,7 +69,13 @@
  	        <aop:after-returning pointcut-ref="getPointcut" method="afterLog"/>
  	    </aop:aspect>
  	</aop:config>
- 	
-
-
+ 	<!-- After Returning 어드바이스 끝 -->
+	<!-- After Thrwoing 어드바이스 시작 -->
+	<bean id="afterThrowing" class="com.springbook.biz.common.AfterThrowingAdvice"/>
+	<aop:config>
+	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
+	    <aop:aspect ref="afterThrowing">
+	        <aop:after-throwing pointcut-ref="allPointcut" method="exceptionLog"/>
+	    </aop:aspect>
+	</aop:config>
 </beans>
