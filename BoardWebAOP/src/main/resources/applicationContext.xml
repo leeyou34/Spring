@@ -65,7 +65,7 @@
  	    <aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
 
  	    <aop:aspect ref="afterReturning">
- 	        <aop:after-returning pointcut-ref="getPointcut" method="afterLog"/>
+ 	        <aop:after-returning pointcut-ref="getPointcut" method="afterLog" returning="returnObj"/>
  	    </aop:aspect>
  	</aop:config>
  	<!-- After Returning 어드바이스 끝 -->
