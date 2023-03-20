@@ -58,4 +58,18 @@
  	    </aop:aspect>
  	</aop:config>
  
+ 	
+ 	
+	<bean id="afterReturning" class="com.springbook.biz.common.AfterReturningAdvice"/>
+ 	
+ 	<aop:config>
+ 	    <aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
+
+ 	    <aop:aspect ref="afterReturning">
+ 	        <aop:after-returning pointcut-ref="getPointcut" method="afterLog"/>
+ 	    </aop:aspect>
+ 	</aop:config>
+ 	
+
+
 </beans>
