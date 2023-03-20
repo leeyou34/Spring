@@ -15,40 +15,40 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDAO boardDAO;
 	//private LogAdvice log;//로그용 AOP 적용
-	private Log4Advice log;
+	//private Log4Advice log;
 	
 	public BoardServiceImpl() { // 로그 AOP용 생성자 코드 적용
 	//	log = new LogAdvice(); // 로그 메소드 적용
-		log = new Log4Advice();
+	//	log = new Log4Advice();
 	}
 	
 	public void insertBoard(BoardVO vo) {
 		//log.printLog();
-		log.printLogging();
+		//log.printLogging();
 		boardDAO.insertBoard(vo);
 	}
 
 	public void updateBoard(BoardVO vo) {
 		//log.printLog();
-		log.printLogging();
+		//log.printLogging();
 		boardDAO.updateBoard(vo);
 	}
 
 	public void deleteBoard(BoardVO vo) {
 		//log.printLog();
-		log.printLogging();
+		//log.printLogging();
 		boardDAO.deleteBoard(vo);
 	}
 
 	public BoardVO getBoard(BoardVO vo) {
 		//log.printLog();
-		log.printLogging();
+		//log.printLogging();
 		return boardDAO.getBoard(vo);
 	}
 
 	public List<BoardVO> getBoardList(BoardVO vo) {
 		//log.printLog();
-		log.printLogging();
+		//log.printLogging();
 		return boardDAO.getBoardList(vo);
 	}
 
