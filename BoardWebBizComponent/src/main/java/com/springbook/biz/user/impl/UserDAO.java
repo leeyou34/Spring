@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.springframework.stereotype.Repository;
+
 import com.springbook.biz.common.JDBCUtil;
 import com.springbook.biz.user.UserVO;
 
+@Repository("userDAO") // applicationContext.xml 에서 bean을 주석처리 했기에 의존성을 주입함
 public class UserDAO {
 	// JDBC 관련 변수
 	private Connection conn =null;
