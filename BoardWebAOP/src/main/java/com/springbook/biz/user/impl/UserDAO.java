@@ -27,15 +27,15 @@ public class UserDAO {
 			System.out.println("===> JDBC로 getUser() 기능 처리");
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(USER_GET);
-			stmt.setString(1,  vo.getId());
+			stmt.setString(1, vo.getId());
 			stmt.setString(2, vo.getPassword());
 			rs = stmt.executeQuery();
 			if(rs.next()) {
 				user = new UserVO();
-				user.setId(rs.getNString("ID"));
-				user.setPassword(rs.getNString("PASSWORD"));
-				user.setName(rs.getNString("NAME"));
-				user.setRole(rs.getNString("ROLE"));
+				user.setId(rs.getString("ID"));
+				user.setPassword(rs.getString("PASSWORD"));
+				user.setName(rs.getString("NAME"));
+				user.setRole(rs.getString("ROLE"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
