@@ -3,10 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        						http://www.springframework.org/schema/beans/spring-beans.xsd
        						http://www.springframework.org/schema/context
-       						http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+       						http://www.springframework.org/schema/context/spring-context-4.2.xsd
+       						http://www.springframework.org/schema/aop
+       						http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 <context:component-scan base-package="com.springbook.biz"></context:component-scan>
 <!-- 
 	<bean id="userService" class="com.springbook.biz.user.impl.UserServiceImpl">
@@ -16,4 +19,11 @@
  ## Setter 인젝션 설정으로 테스트한 UserService 컴포넌트를 어노테이션 설정으로 변경한다. 우선 스프링 설정 파일에 Setter 인젝션 관련 설정을 주석 처리함.
  ## 주석 처리 하고 나서 관련 어노테이션 추가한다.
  -->
+ 	<bean id="log" class="com.springbook.biz.common.LogAdvice"></bean>
+ 	<aop:config>
+ 	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
+ 	    <aop:aspect ref="log">
+			<aop:before pointcut-ref="allPointcut" method="printLog"/> 	        
+ 	    </aop:aspect>
+ 	</aop:config>
 </beans>
