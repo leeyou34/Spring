@@ -74,7 +74,7 @@
 	<aop:config>
 	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
 	    <aop:aspect ref="afterThrowing">
-	        <aop:after-throwing pointcut-ref="allPointcut" method="exceptionLog"/>
+	        <aop:after-throwing pointcut-ref="allPointcut" method="exceptionLog" throwing="exceptObj"/>
 	    </aop:aspect>
 	</aop:config>
 	<!-- After Throwing 어드바이스  -->
