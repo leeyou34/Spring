@@ -94,6 +94,15 @@
 	        <aop:around pointcut-ref="allPointcut" method="aroundLog"/>
 	    </aop:aspect>
 	</aop:config>
-	
-	
+	<!-- Around 어드바이스 끝-->
+	<!-- 스프링 컨테이너에 AOP 관련 어노테이션들을 인식하고 용도에 맞게 처리함. -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<!-- 포인트 컷 설정 -->
+	<aop:config>
+	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
+	    <aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.get*(..))"/>
+	    <aop:aspect ref="log">
+	        <aop:before pointcut-ref="allPointcut" method="printLog"/>
+	    </aop:aspect>
+	</aop:config>
 </beans>
