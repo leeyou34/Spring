@@ -19,11 +19,13 @@
  ## Setter 인젝션 설정으로 테스트한 UserService 컴포넌트를 어노테이션 설정으로 변경한다. 우선 스프링 설정 파일에 Setter 인젝션 관련 설정을 주석 처리함.
  ## 주석 처리 하고 나서 관련 어노테이션 추가한다.
  -->
- 	<bean id="log" class="com.springbook.biz.common.LogAdvice"></bean>
+ 	<!-- <bean id="log" class="com.springbook.biz.common.LogAdvice"></bean> -->
+ 	<bean id="log" class="com.springbook.biz.common.Log4jAdvice"></bean>
  	<aop:config>
  	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
  	    <aop:aspect ref="log">
-			<aop:before pointcut-ref="allPointcut" method="printLog"/> 	        
+			<!-- <aop:before pointcut-ref="allPointcut" method="printLog"/> -->
+			<aop:before pointcut-ref="allPointcut" method="printLogging"/> 	        
  	    </aop:aspect>
  	</aop:config>
 </beans>
