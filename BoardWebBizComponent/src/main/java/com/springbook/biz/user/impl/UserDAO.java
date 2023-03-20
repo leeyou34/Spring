@@ -32,10 +32,10 @@ public class UserDAO {
 			rs = stmt.executeQuery();
 			if(rs.next()) {
 				user = new UserVO();
-				user.setId(rs.getNString("ID"));
-				user.setPassword(rs.getNString("PASSWORD"));
-				user.setName(rs.getNString("NAME"));
-				user.setRole(rs.getNString("ROLE"));
+				user.setId(rs.getString("ID"));
+				user.setPassword(rs.getString("PASSWORD"));
+				user.setName(rs.getString("NAME"));
+				user.setRole(rs.getString("ROLE"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
