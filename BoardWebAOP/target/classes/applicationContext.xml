@@ -61,7 +61,6 @@
  	<!-- Before 어드바이스 끝 -->
  	<!-- After Returning 어드바이스 시작 -->
 	<bean id="afterReturning" class="com.springbook.biz.common.AfterReturningAdvice"/>
- 	
  	<aop:config>
  	    <aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
 
@@ -76,6 +75,14 @@
 	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
 	    <aop:aspect ref="afterThrowing">
 	        <aop:after-throwing pointcut-ref="allPointcut" method="exceptionLog"/>
+	    </aop:aspect>
+	</aop:config>
+	<!-- After Throwing 어드바이스  -->
+	<!-- After 어드바이스 시작 -->
+	<bean id="after" class="com.springbook.biz.common.AfterAdvice"/>
+	<aop:config>
+	    <aop:aspect ref="after">
+	        <aop:after pointcut-ref="allPointcut" method="finallyLog"/>
 	    </aop:aspect>
 	</aop:config>
 </beans>
