@@ -30,28 +30,12 @@
  	    <!-- pointcut 테스트 -->
  	    <aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.get*(..))"/>
  	    <aop:aspect ref="log">
-			<!-- <aop:before pointcut-ref="allPointcut" method="printLog"/> -->
+			 <aop:before pointcut-ref="allPointcut" method="printLog"/>
 			<!-- <aop:before pointcut-ref="allPointcut" method="printLogging"/>  -->
-			<aop:before pointcut-ref="getPointcut" method="printlog"/> 	        
+			<!-- <aop:before pointcut-ref="getPointcut" method="printlog"/>  -->	        
  	    </aop:aspect>
  	</aop:config>
  	
- 	<!-- Transaction 설정 -->
- <!-- 	
- 	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
- 	    <property name="entityManagerFactory" ref="entityManagerFactory"></property>
- 	</bean>
- 	<tx:advice id="txAdvice" transaction-manager="txManager">
- 	    <tx:attributes>
- 	        <tx:method name="get*" read-only="true"/>
- 	        <tx:method name="*"/>
- 	    </tx:attributes>
- 	</tx:advice>
- 	<aop:config>
- 	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
- 	    <aop:advisor pointcut-ref="allPointcut" advice-ref="txAdvice"/>
- 	</aop:config>
- -->
  	<!-- Before 어드바이스 시작 -->
  	<bean id="before" class="com.springbook.biz.common.BeforeAdvice"/>
  	
@@ -110,9 +94,9 @@
 	    </aop:aspect>
 	</aop:config>
 	
-	<!-- DataSource 설정 -->
 	
 	<context:property-placeholder location="classpath:config/database.properties"/>
+	<!-- DataSource 설정 -->
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 	      destory-method="close">
@@ -126,6 +110,18 @@
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	    <property name="dataSource"></property>
 	</bean>
+	
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+	    <tx:attributes>
+	        <tx:method name="get*" read-only="true"/>
+	        <tx:method name="*"/>
+	    </tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+	    <aop:pointcut id="txPointcut" expression="execution(* com.springbook.biz..*(..))"/>
+	    <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
+	</aop:config>
 <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 	      destory-method="close">
 	 	<property name="driverClassName" value="${jdbc.driver}"/>
@@ -135,7 +131,26 @@
 	</bean>
  -->	
 	<!-- Spring JDBC 설정 -->
-<!-- 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+ 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 	    <property name="dataSource" ref="dataSource"/>
-	</bean> -->
+	</bean>
+	
+ 	 	<!-- Transaction 설정 -->
+ 	
+ 	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+ 	    <property name="entityManagerFactory" ref="entityManagerFactory"></property>
+ 	</bean>
+ 	
+ 	<tx:advice id="txAdvice" transaction-manager="txManager">
+ 	    <tx:attributes>
+ 	        <tx:method name="get*" read-only="true"/>
+ 	        <tx:method name="*"/>
+ 	    </tx:attributes>
+ 	</tx:advice>
+ 	
+ 	<aop:config>
+ 	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
+ 	    <aop:advisor pointcut-ref="allPointcut" advice-ref="txAdvice"/>
+ 	</aop:config>
+
 </beans>
