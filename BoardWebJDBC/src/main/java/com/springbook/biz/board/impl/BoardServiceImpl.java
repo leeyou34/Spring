@@ -13,7 +13,7 @@ import com.springbook.biz.common.Log4Advice;
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
-	private BoardDAO boardDAO;
+	private BoardDAOSpring boardDAO;
 	//private LogAdvice log;//로그용 AOP 적용
 	//private Log4Advice log;
 	

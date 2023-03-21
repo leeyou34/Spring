@@ -1,10 +1,13 @@
 package com.springbook.biz.board.impl;
 
 import java.util.List;
-
-import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.springbook.biz.board.BoardVO;
@@ -12,6 +15,10 @@ import com.springbook.biz.board.BoardVO;
 // DAO(Data Access Object)
 @Repository
 public class BoardDAOSpring extends JdbcDaoSupport {
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
 	// SQL 명령어들 ====> postgreSQL 버젼으로 고치도록 고려할 것
 	private final String BOARD_INSERT= "insert into board(seq, title, writer, content) values(select nvl(max(seq), 0)+1 from board),?,?,?)";
 	private final String BOARD_UPDATE= "update board set title=?, content=? where seq=?";
