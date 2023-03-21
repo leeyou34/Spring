@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://wwww.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       						http://www.springframework.org/schema/beans/spring-beans.xsd
+       						http://www.springframework.org/schema/context
+       						http://www.springframework.org/schema/context/spring-context-4.2.xsd
+       						http://www.springframework.org/schema/aop
+       						http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+       						http://www.springframework.org/schema/tx
+       						http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+       						
+<context:component-scan base-package="com.springbook.biz"></context:component-scan>
+<!-- 
+	<bean id="userService" class="com.springbook.biz.user.impl.UserServiceImpl">
+	    <property name="userDAO" ref="userDAO"/>
+	</bean>
+	<bean id="userDAO" class="com.springbook.biz.user.impl.UserDAO"/>
+ ## Setter 인젝션 설정으로 테스트한 UserService 컴포넌트를 어노테이션 설정으로 변경한다. 우선 스프링 설정 파일에 Setter 인젝션 관련 설정을 주석 처리함.
+ ## 주석 처리 하고 나서 관련 어노테이션 추가한다.
+ -->
+ 	<!-- <bean id="log" class="com.springbook.biz.common.LogAdvice"></bean> -->
+ 	<bean id="log" class="com.springbook.biz.common.Log4jAdvice"></bean>
+ 	<aop:config>
+ 	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
+ 	    <!-- pointcut 테스트 -->
+ 	    <aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.get*(..))"/>
+ 	    <aop:aspect ref="log">
+			<!-- <aop:before pointcut-ref="allPointcut" method="printLog"/> -->
+			<!-- <aop:before pointcut-ref="allPointcut" method="printLogging"/>  -->
+			<aop:before pointcut-ref="getPointcut" method="printlog"/> 	        
+ 	    </aop:aspect>
+ 	</aop:config>
+ 	
+ 	<!-- Transaction 설정 -->
+ <!-- 	
+ 	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+ 	    <property name="entityManagerFactory" ref="entityManagerFactory"></property>
+ 	</bean>
+ 	<tx:advice id="txAdvice" transaction-manager="txManager">
+ 	    <tx:attributes>
+ 	        <tx:method name="get*" read-only="true"/>
+ 	        <tx:method name="*"/>
+ 	    </tx:attributes>
+ 	</tx:advice>
+ 	<aop:config>
+ 	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
+ 	    <aop:advisor pointcut-ref="allPointcut" advice-ref="txAdvice"/>
+ 	</aop:config>
+ -->
+ 	<!-- Before 어드바이스 시작 -->
+ 	<bean id="before" class="com.springbook.biz.common.BeforeAdvice"/>
+ 	
+ 	<aop:config>
+ 	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
+
+ 	    <aop:aspect ref="before">
+ 	        <aop:before pointcut-ref="allPointcut" method="beforeLog"/>
+ 	    </aop:aspect>
+ 	</aop:config>
+ 	<!-- Before 어드바이스 끝 -->
+ 	<!-- After Returning 어드바이스 시작 -->
+	<bean id="afterReturning" class="com.springbook.biz.common.AfterReturningAdvice"/>
+ 	<aop:config>
+ 	    <aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
+
+ 	    <aop:aspect ref="afterReturning">
+ 	        <aop:after-returning pointcut-ref="getPointcut" method="afterLog" returning="returnObj"/>
+ 	    </aop:aspect>
+ 	</aop:config>
+ 	<!-- After Returning 어드바이스 끝 -->
+	<!-- After Thrwoing 어드바이스 시작 -->
+	<bean id="afterThrowing" class="com.springbook.biz.common.AfterThrowingAdvice"/>
+	<aop:config>
+	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
+	    <aop:aspect ref="afterThrowing">
+	        <aop:after-throwing pointcut-ref="allPointcut" method="exceptionLog" throwing="exceptObj"/>
+	    </aop:aspect>
+	</aop:config>
+	<!-- After Throwing 어드바이스  -->
+	<!-- After 어드바이스 시작 -->
+	<bean id="after" class="com.springbook.biz.common.AfterAdvice"/>
+	<aop:config>
+	    <aop:aspect ref="after">
+	        <aop:after pointcut-ref="allPointcut" method="finallyLog"/>
+	    </aop:aspect>
+	</aop:config>
+	<!-- After 어드바이스 끝 -->
+	<!-- Around 어드바이스 시작-->
+	<bean id="around" class="com.springbook.biz.common.AroundAdvice"/>
+	<aop:config>
+	    <aop:pointcut id="allPointcut" expression="execution(* com.spring.biz..*Impl.*(..))"/>
+	    <aop:aspect ref="around">
+	        <aop:around pointcut-ref="allPointcut" method="aroundLog"/>
+	    </aop:aspect>
+	</aop:config>
+	<!-- Around 어드바이스 끝-->
+	<!-- 스프링 컨테이너에 AOP 관련 어노테이션들을 인식하고 용도에 맞게 처리함. -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<!-- 포인트 컷 설정 -->
+	<aop:config>
+	    <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
+	    <aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.get*(..))"/>
+	    <aop:aspect ref="log">
+	        <aop:before pointcut-ref="allPointcut" method="printLog"/>
+	    </aop:aspect>
+	</aop:config>
+	
+	<!-- DataSource 설정 -->
+	
+	<context:property-placeholder location="classpath:config/database.properties"/>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	      destory-method="close">
+	 	<property name="driverClassName" value="org.h2.Driver"/>
+	 	<property name="url" value="jdbc:h2:txp://localhost/~/test"/>
+		<property name="username" value="sa"
+		<property name="password" value=""/>   
+	</bean>
+	
+<!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	      destory-method="close">
+	 	<property name="driverClassName" value="${jdbc.driver}"/>
+	 	<property name="url" value="${jdbc.url}"/>
+	 	<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>   
+	</bean>
+ -->	
+	<!-- Spring JDBC 설정 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	    <property name="dataSource" ref="dataSource"/>
+	</bean>
+</beans>
