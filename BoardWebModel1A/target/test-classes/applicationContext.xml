@@ -98,25 +98,25 @@
 	<context:property-placeholder location="classpath:config/database.properties"/>
 	<!-- DataSource 설정 -->
 	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 	      destory-method="close">
 	 	<property name="driverClassName" value="org.h2.Driver"/>
-	 	<property name="url" value="jdbc:h2:txp://localhost/~/test"/>
+	 	<property name="url" value="jdbc:h2:tcp://localhost/~/test"/>
 		<property name="username" value="sa"
 		<property name="password" value=""/>   
-	</bean>
+	</bean>  -->
 	
 	<!-- Transaction 설정-->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	    <property name="dataSource"></property>
 	</bean>
 	
-	<tx:advice id="txAdvice" transaction-manager="txManager">
+<!-- 	<tx:advice id="txAdvice" transaction-manager="txManager">
 	    <tx:attributes>
 	        <tx:method name="get*" read-only="true"/>
 	        <tx:method name="*"/>
 	    </tx:attributes>
-	</tx:advice>
+	</tx:advice>  -->
 	
 	<aop:config>
 	    <aop:pointcut id="txPointcut" expression="execution(* com.springbook.biz..*(..))"/>
