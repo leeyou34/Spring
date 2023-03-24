@@ -1,4 +1,4 @@
-package com.springbook.biz.view.controller;
+package com.springbook.view.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
