@@ -69,6 +69,13 @@ public class DispatcherServlet extends HttpServlet {
 			UserDAO userDAO = new UserDAO();
 			UserVO user = userDAO.getUser(vo);
 			
+			// 3. 화면 네비게이션
+			if(user != null) {
+				response.sendRedirect("getBoardList.do");
+			} else {
+				response.sendRedirect("login.jsp");
+			}
+			
 		} else if(path.equals("/logout.do")) {
 			System.out.println("로그아웃 처리");
 		} else if(path.equals("/insertBoard.do")) {
