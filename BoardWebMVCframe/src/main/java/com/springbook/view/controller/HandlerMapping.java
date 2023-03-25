@@ -8,6 +8,7 @@ import com.springbook.view.board.GetBoardController;
 import com.springbook.view.board.GetBoardListController;
 import com.springbook.view.board.InsertBoardController;
 import com.springbook.view.user.LoginController;
+import com.springbook.view.user.LogoutController;
 
 public class HandlerMapping {
 	private Map<String, Controller> mappings;
@@ -19,6 +20,7 @@ public class HandlerMapping {
 		mappings.put("/getBoard.do",  new GetBoardController());
 		mappings.put("/insertBoard.do", new InsertBoardController());
 		mappings.put("/deleteBoard.do", new DeleteBoardController());
+		mappings.put("/logout.do", new LogoutController());
 	}
 	
 	public Controller getController(String path) {
