@@ -8,11 +8,14 @@
     	    	<property name="mappings">
     	    	    <props>
     	    	        <prop key="/login.do">login</prop>
+    	    	        <prop key="/getBoardList.do">getBoardList</prop>
+    	    	        <prop key="/getBoard.do">getBoard</prop>
     	    	    </props>
     	    	</property>
     	</bean>
     	
     	<!-- Controller -->
     	<bean id="login" class="com.springbook.view.user.LoginController"></bean>
-
+    	<bean id="getBoardList" class="com.springbook.view.board.getBoardListController"></bean>
+		<bean id="getBoard" class="com.springbook.view.board.GetBoardController"></bean>
 </beans>
