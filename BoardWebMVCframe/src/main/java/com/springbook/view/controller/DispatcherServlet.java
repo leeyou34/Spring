@@ -24,11 +24,16 @@ public class DispatcherServlet extends HttpServlet {
 	
 	private ViewResolver viewResolver;
 	
+	//private String contextConfigLocation;
+	
 	public void init() throws ServletException {
 		handlerMapping = new HandlerMapping();
 		viewResolver = new ViewResolver();
 		viewResolver.setPrefix("./");
 		viewResolver.setSuffix(".jsp");
+		
+		//contextConfigLocation = config.getInitParameter("contextConfigLocation");
+		// new XmlWebApplicationContext(contextConfigLocation);
 	}
     /**
      * @see HttpServlet#HttpServlet()
