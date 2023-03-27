@@ -13,7 +13,7 @@ import com.springbook.view.user.LogoutController;
 public class HandlerMapping {
 	private Map<String, Controller> mappings;
 	
-	public HandlerMapping() {
+/*	public HandlerMapping() {
 		mappings = new HashMap<String, Controller>();
 		mappings.put("/login.do", new LoginController());
 		mappings.put("/getBoardList.do", new GetBoardListController());
@@ -22,7 +22,7 @@ public class HandlerMapping {
 		mappings.put("/deleteBoard.do", new DeleteBoardController());
 		mappings.put("/logout.do", new LogoutController());
 	}
-	
+*/	
 	public Controller getController(String path) {
 		return mappings.get(path);
 	}

@@ -9,24 +9,27 @@ import org.springframework.web.servlet.mvc.Controller;
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
 
-
-public class DeleteBoardController implements Controller{
+public class UpdateBoardController implements Controller{
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("글 삭제 처리");
+		System.out.println("글 수정 처리");
 		
 		// 1. 사용자 입력 정보 추출
+		// request.setCharacterEncoding("EUC-KR");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
 		String seq = request.getParameter("seq");
 		
 		// 2. DB 연동 처리
 		BoardVO vo = new BoardVO();
+		vo.setTitle(title);
+		vo.setContent(content);
 		vo.setSeq(Integer.parseInt(seq));
 		
 		BoardDAO boardDAO = new BoardDAO();
-		boardDAO.deleteBoard(vo);
+		boardDAO.updateBoard(vo);
 		
 		// 3. 화면 네비게이션
-		//return "getBoardList.do";
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("getBoardList.do");
 		return mav;
