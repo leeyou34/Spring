@@ -28,7 +28,7 @@ public class LogoutController implements Controller {
 */
 
 @Controller
-public class logoutController {
+public class LogoutController {
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
