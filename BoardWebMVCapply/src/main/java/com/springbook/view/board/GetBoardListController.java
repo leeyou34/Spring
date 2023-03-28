@@ -1,17 +1,13 @@
 package com.springbook.view.board;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
 
-
+/*
 public class GetBoardListController implements Controller{
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
@@ -35,4 +31,15 @@ public class GetBoardListController implements Controller{
 		mav.setViewName("getBoardList");
 		return mav;
 	}
-}
+}*/
+
+	@Controller
+	public class GetBoardListController {
+		@RequestMapping("/getBoardList.do")
+		public ModelAndView getBoardList(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
+			mav.addObject("boardList", boardDAO.getBoardList(vo)); // Model 정보 저장
+			mav.setViewName("getBoardList.jsp"); // view 정보 저장
+			return mav;
+		}
+	}
+

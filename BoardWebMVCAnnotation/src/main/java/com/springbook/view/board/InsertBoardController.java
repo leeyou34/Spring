@@ -12,8 +12,8 @@ import com.springbook.biz.board.impl.BoardDAO;
 public class InsertBoardController /*implements Controller */{
 	//@Override
 	//public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
-	
-	@RequestMapping(value="/insertBoard.do")
+/*	
+	@RequestMapping(value="/insertBoard.do") // 글 등록 기능 구현하기를 위해 주석 처리함.
 	public void insertBoard(HttpServletRequest request) {
 		
 	System.out.println("글 등록 처리");
@@ -39,5 +39,10 @@ public class InsertBoardController /*implements Controller */{
 		//mav.setViewName("getBoardList.do");
 		//return mav;
 	}
-
+*/
+	@RequestMapping(value="/insertBoard.do")
+	public String insertBoard(BoardVO vo, BoardDAO boardDAO) {
+		boardDAO.insertBoard(vo);
+		return "getBoardList.do";
+	}
 }
