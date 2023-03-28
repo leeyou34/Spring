@@ -1,14 +1,11 @@
 package com.springbook.view.board;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
-
+/*
 public class UpdateBoardController implements Controller{
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
@@ -33,5 +30,16 @@ public class UpdateBoardController implements Controller{
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("getBoardList.do");
 		return mav;
+	}
+}
+*/
+
+@Controller
+public class UpdateBoardController {
+	
+	@RequestMapping("/updateBoard.do")
+	public String updateBoard(BoardVO vo, BoardDAO boardDAO) {
+		boardDAO.updateBoard(vo);
+		return "getBoardList.do";
 	}
 }
