@@ -2,7 +2,7 @@ package com.springbook.view.board;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.stereotype.Controller;
 
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
