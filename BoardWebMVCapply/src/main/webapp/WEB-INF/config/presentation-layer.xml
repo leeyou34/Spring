@@ -3,6 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    	<!--  context: component-scan -->
+    	<context:component-scan base-package="com.springbook.view"></context:component-scan>
+    
     	<!--  HandlerMapping 등록 -->
     	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
     	    	<property name="mappings">
