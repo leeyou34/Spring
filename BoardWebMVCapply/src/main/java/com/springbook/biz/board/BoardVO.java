@@ -2,6 +2,8 @@ package com.springbook.biz.board;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardVO {
 	private int seq;
 	private String title;
@@ -71,4 +73,18 @@ public class BoardVO {
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
 	}	
+
+	
+	
+	MultipartFile uploadFile;
+
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	
+	
+	
 }
