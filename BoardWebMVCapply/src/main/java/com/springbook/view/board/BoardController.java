@@ -27,10 +27,10 @@ public class BoardController {
 	@RequestMapping("/insertBoard.do")
 	public String insertBoard(BoardVO vo) throws IOException {
 		// 파일 업로드 처리
-		MultipartFile uploadFIle = vo.getUploadFile();
-		if(!uploadFIle.isEmpty()) {
-			String fileName = uploadFIle.getOriginalFilename();
-			uploadFIle.transferTo(new File("D:/" + fileName));
+		MultipartFile uploadFile = vo.getUploadFile();
+		if(!uploadFile.isEmpty()) {
+			String fileName = uploadFile.getOriginalFilename();
+			uploadFile.transferTo(new File("D:/" + fileName));
 		}
 		
 		boardService.insertBoard(vo);
