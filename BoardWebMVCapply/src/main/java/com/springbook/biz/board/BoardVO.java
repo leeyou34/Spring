@@ -2,11 +2,18 @@ package com.springbook.biz.board;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class BoardVO {
+	@XmlAttribute
 	private int seq;
 	private String title;
 	private String writer;
@@ -58,8 +65,9 @@ public class BoardVO {
 		return "BoardVO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regDate=" + regDate + ", cnt=" + cnt + "]";
 
 	}
-
+	@XmlTransient
 	private String searchCondition;
+	@XmlTransient
 	private String searchKeyword;
 	
 	@JsonIgnore	
@@ -79,7 +87,7 @@ public class BoardVO {
 	}	
 
 	
-	
+	@XmlTransient
 	MultipartFile uploadFile;
 
 	@JsonIgnore
