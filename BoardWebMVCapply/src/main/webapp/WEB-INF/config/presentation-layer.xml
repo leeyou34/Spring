@@ -3,7 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+						http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 						http://www.springframework.org/schema/context
 						http://www.springframework.org/schema/context/spring-context-4.2.xsd				
 						http://www.springframework.org/schema/beans
@@ -73,4 +74,15 @@
 		        </list>
 		    </property>
 		</bean>
+		
+		<!-- LocaleResolver 등록 -->
+		<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocalResolver"></bean>
+
+
+		<!-- LocaleChangeInterceptor 등록 -->
+		<mvc:interceptors>
+		    <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		        <property name="paramName" value="lang"></property>
+		    </bean>
+		</mvc:interceptors>
 </beans>
