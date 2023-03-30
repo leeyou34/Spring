@@ -62,4 +62,15 @@
 		    </property>
 		    <property name="defaultErrorView" value="common/error.jsp"/>
 		</bean>
+		
+		<!--  다국어 설정 -->
+		<!--  MessageSource 등록 -->
+		<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		    <property name="basenames">
+		        <list>
+		            <value>message.messageSource_en.properties</value>
+		            <value>message.messageSource_ko.properties</value>
+		        </list>
+		    </property>
+		</bean>
 </beans>
