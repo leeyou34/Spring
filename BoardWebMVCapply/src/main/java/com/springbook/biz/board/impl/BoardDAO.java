@@ -111,6 +111,8 @@ public class BoardDAO {
 			return board;
 		}		
 		
+		
+		// 글 목록 검색
 		public List<BoardVO> getBoardList(BoardVO vo) {
 			System.out.println("===> JDBC로 getBoardList() 기능 처리");
 			List<BoardVO> boardList = new ArrayList<BoardVO>();
@@ -141,4 +143,9 @@ public class BoardDAO {
 			}
 			return boardList;
 		}
+		
+		//MyBatis는 XML 파일에 저장된 SQL 명령어를 대신 실행하고 실행 결과를 VO 같은 자바 객체에 자동으로 매핑까지 해준다.
+//		SqlSession mybatis = SqlSessionFactoryBean.getSqlSessionInstance();
+//		return mybatis.selectList("BoardDAO.getBoardList", vo);
+//	}
 }
