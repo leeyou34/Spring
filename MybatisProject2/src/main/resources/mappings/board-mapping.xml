@@ -3,6 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- mapper자체가 DAO 분리되어 나온 개념이기 때문에 namespace는 DAO명을 따라가는 경우가 일반적임 -->
+<!--
 <mapper namespace="BoardDAO">
 	<insert id="insertBoard">
 		INSERT INTO studydb.BOARD(
@@ -42,4 +43,36 @@
 			WHERE TITLE LIKE CONCAT_WS('%', #{searchKeyword}, '%')
 			ORDER BY SEQ DESC
 	</select>
+	 -->
+	 <mapper namespace="BoardDAO">
+	     <insert id="insertBoard">
+	         insert into board(
+	         	seq
+	         	, title
+	         	, writer
+	         	, content
+	         	) value (
+	         	(select nvl(max(seq), 0)+1 from board)
+	         	, #{title}
+	         	, #{writer}
+	         	, #{content})
+	     </insert>
+	     
+	     <update id="updateBoard">
+	         update board set title=#{title}, content=#{content} where seq=#{seq}
+	     </update>
+	     
+	     <delete id="deleteBoard">
+	         delete board where seq=#{seq}
+	     </delete>
+	     
+	     <select id="getBoard" resultType="board">
+	         select * from board where seq=#{seq}
+	     </select>
+	     
+	     <select id="getBoardList" resultType="board">
+			SELECT * FROM BOARD
+			WHERE TITLE LIKE CONCAT_WS('%', #{searchKeyword}, '%')
+			ORDER BY SEQ DESC
+		</select>			
 </mapper>
