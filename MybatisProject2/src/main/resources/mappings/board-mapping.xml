@@ -45,7 +45,17 @@
 	</select>
 	 -->
 	 <mapper namespace="BoardDAO">
+	    <resultMap id="boardResult" type="board">
+	        <id property="seq" column="SEQ" />
+	        <result property="title" column="TITLE"/>
+	        <result property="writer" column="WRITER"/>
+	        <result property="content" column="CONTENT"/>
+	        <result property="regDate" column="REGDATE"/>
+	        <result property="cnt" column="CNT"/>
+	    </resultMap>
+	     
 	     <insert id="insertBoard">
+	         <![CDATA[
 	         insert into board(
 	         	seq
 	         	, title
@@ -56,23 +66,32 @@
 	         	, #{title}
 	         	, #{writer}
 	         	, #{content})
+	         	]]>
 	     </insert>
 	     
 	     <update id="updateBoard">
+	         <![CDATA[
 	         update board set title=#{title}, content=#{content} where seq=#{seq}
+	     	]]>
 	     </update>
 	     
 	     <delete id="deleteBoard">
+	         <![CDATA[
 	         delete board where seq=#{seq}
+	     	]]>
 	     </delete>
 	     
 	     <select id="getBoard" resultType="board">
+	         <![CDATA[
 	         select * from board where seq=#{seq}
+	     	]]>
 	     </select>
 	     
 	     <select id="getBoardList" resultType="board">
-			SELECT * FROM BOARD
+			<![CDATA[
+	        SELECT * FROM BOARD
 			WHERE TITLE LIKE CONCAT_WS('%', #{searchKeyword}, '%')
 			ORDER BY SEQ DESC
+			]]>
 		</select>			
 </mapper>
