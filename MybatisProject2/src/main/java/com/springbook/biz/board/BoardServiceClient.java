@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.springbook.biz.board.impl.BoardDAO;
-
+/*
 public class BoardServiceClient {
 	public static void main(String[] args) throws SQLException {
 		BoardDAO boardDAO = new BoardDAO();
@@ -12,7 +12,7 @@ public class BoardServiceClient {
 		BoardVO vo = new BoardVO();
 		vo.setTitle("pjt74 ");
 		vo.setWriter("Noble");
-		vo.setContent("this is pjt 74 myBatis �����Դϴ�... i wrote this because i just saw noble was passing by");
+		vo.setContent("this is pjt 74 myBatis");
 		boardDAO.insertBoard(vo);
 		
 		vo.setSearchCondition("TITLE");
@@ -24,4 +24,24 @@ public class BoardServiceClient {
 
 	}
 
+}
+*/
+
+public class BoardServiceClient {
+	public static void main(String[] args) throws SQLException {
+		BoardDAO boardDAO = new BoardDAO();
+		
+		BoardVO vo = new BoardVO();
+		vo.setTitle("myBatis 제목");
+		vo.setWriter("홍길동");
+		vo.setContent("myBatis 내용입니다.....");
+		boardDAO.insertBoard(vo);
+		
+		vo.setSearchCondition("TITLE");
+		vo.setSearchKeyword("");
+		List<BoardVO> boardList = boardDAO.getBoardList(vo);
+		for (BoardVO board : boardList) {
+			System.out.println("---> " + board.toString());
+		}
+	}
 }
