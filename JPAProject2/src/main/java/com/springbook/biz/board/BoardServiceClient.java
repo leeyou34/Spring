@@ -12,7 +12,7 @@ public class BoardServiceClient {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//EntityManager 생성
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("_078_JPAProject");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAProject2");
 		EntityManager em = emf.createEntityManager();
 		//EntityManager em2 = emf.createEntityManager();// 원하면 이렇게 하나씩 거내서 쓰면 된다.
 		
