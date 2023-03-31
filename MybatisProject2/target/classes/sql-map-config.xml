@@ -12,7 +12,7 @@
 	</typeAliases>
 	
 	<!--  DataSrouce 설정 -->
-	<environments default="development">
+<!-- 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
@@ -22,7 +22,7 @@
 				<property name="password" value="${jdbc.password}" />
 			</dataSource>
 		</environment>
-	</environments>
+	</environments>  -->
 	
 	<!-- Sql Mapper 설정 -->
 	<mappers>
