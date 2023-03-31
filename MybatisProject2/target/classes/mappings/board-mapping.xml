@@ -87,11 +87,24 @@
 	     	]]>
 	     </select>
 	     
-	     <select id="getBoardList" resultType="board">
+<!-- 	     <select id="getBoardList" resultType="board">
 			<![CDATA[
 	        SELECT * FROM BOARD
 			WHERE TITLE LIKE CONCAT_WS('%', #{searchKeyword}, '%')
 			ORDER BY SEQ DESC
 			]]>
-		</select>			
+		</select>			 -->
+		<select id="getBoardList" resultTYpe="boardResult">
+		    <![CDATA[
+	        SELECT * FROM BOARD
+			WHERE 1=1
+			<if test="searchCondition == 'TITLE'">
+				AND TITLE LIKE '%'||#{searchKeyword||'%'
+			</if>
+			<if test="searchCondition == 'CONTENT'">
+				AND CONTENT LIKE '%'||#{searchKeyword||'%'
+			</if>
+			ORDER BY SEQ DESC
+			]]>
+		</select>
 </mapper>
