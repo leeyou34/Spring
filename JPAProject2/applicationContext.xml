@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  스프링과 JPA 연동 설정 -->
+
+<bean id="jpaVendorAdapter"
+    class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalCOntainerEntityManagerFactoryBean">
+    	<property name="dataSource" ref="datasource"></property>
+    	<property name="jpaVendorAdapter" ref="jpaVendorAdapter"></property>
+    	<property name="packagesToScan" value="com.springbook.biz.board"></property>
+    	<property name="jpaProperties">
+    	    <props>
+    	        <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+    	        <prop key="hibernate.show_Sql">true</prop>
+    	        <prop key="hibernate.format_Sql">true</prop>
+    	        <prop key="hibernate.use_sql_comments">true</prop>
+    	        <prop key="hibernate.id.new_generator_mappings">true</prop>
+    	        <prop key="hibernate.hbm2ddl.auto">create</prop>
+    	    </props>
+    	</property>
+    </bean>
+    
+    
